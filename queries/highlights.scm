@@ -1,380 +1,258 @@
-;; Based on the nvim-treesitter highlighting, which is under the Apache license.
-;; See https://github.com/nvim-treesitter/nvim-treesitter/blob/f8ab59861eed4a1c168505e3433462ed800f2bae/queries/kotlin/highlights.scm
-;;
-;; The only difference in this file is that queries using #lua-match?
-;; have been removed.
+;; Aligned with tree-sitter-java/queries/highlights.scm for consistency
 
-;;; Identifiers
+; Function declarations
+(function_declaration
+  (simple_identifier) @function.method)
 
-(simple_identifier) @variable
+; Constructors
+(constructor_invocation
+  (user_type
+    (type_identifier) @constructor))
+(primary_constructor) @constructor
+(secondary_constructor
+  ("constructor") @constructor)
 
-; `it` keyword inside lambdas
-; FIXME: This will highlight the keyword outside of lambdas since tree-sitter
-;        does not allow us to check for arbitrary nestation
-((simple_identifier) @variable.builtin
-(#eq? @variable.builtin "it"))
+; Annotation symbol - will be overridden by specific annotation rules
+"@" @operator
 
-; `field` keyword inside property getter/setter
-; FIXME: This will highlight the keyword outside of getters and setters
-;        since tree-sitter does not allow us to check for arbitrary nestation
-((simple_identifier) @variable.builtin
-(#eq? @variable.builtin "field"))
-
-; `this` this keyword inside classes
-(this_expression) @variable.builtin
-
-; `super` keyword inside classes
-(super_expression) @variable.builtin
-
-(class_parameter
-	(simple_identifier) @property)
-
-(class_body
-	(property_declaration
-		(variable_declaration
-			(simple_identifier) @property)))
-
-; id_1.id_2.id_3: `id_2` and `id_3` are assumed as object properties
-(_
-	(navigation_suffix
-		(simple_identifier) @property))
-
-(enum_entry
-	(simple_identifier) @constant)
+; Types
 
 (type_identifier) @type
 
+; Built-in types
 ((type_identifier) @type.builtin
-	(#any-of? @type.builtin
-		"Byte"
-		"Short"
-		"Int"
-		"Long"
-		"UByte"
-		"UShort"
-		"UInt"
-		"ULong"
-		"Float"
-		"Double"
-		"Boolean"
-		"Char"
-		"String"
-		"Array"
-		"ByteArray"
-		"ShortArray"
-		"IntArray"
-		"LongArray"
-		"UByteArray"
-		"UShortArray"
-		"UIntArray"
-		"ULongArray"
-		"FloatArray"
-		"DoubleArray"
-		"BooleanArray"
-		"CharArray"
-		"Map"
-		"Set"
-		"List"
-		"EmptyMap"
-		"EmptySet"
-		"EmptyList"
-		"MutableMap"
-		"MutableSet"
-		"MutableList"
-))
+  (#any-of? @type.builtin
+    "Byte" "Short" "Int" "Long" "UByte" "UShort" "UInt" "ULong"
+    "Float" "Double" "Boolean" "Char" "String" "Unit" "Nothing"
+    "Array" "ByteArray" "ShortArray" "IntArray" "LongArray"
+    "UByteArray" "UShortArray" "UIntArray" "ULongArray"
+    "FloatArray" "DoubleArray" "BooleanArray" "CharArray"
+    "Map" "Set" "List" "MutableMap" "MutableSet" "MutableList"))
 
-(package_header
-	. (identifier)) @namespace
+; Constants
 
-(import_header
-	"import" @include)
+(enum_entry
+  (simple_identifier) @constant)
 
+((simple_identifier) @constant
+ (#match? @constant "^[A-Z][A-Z0-9_]*$"))
 
-; TODO: Seperate labeled returns/breaks/continue/super/this
-;       Must be implemented in the parser first
-(label) @label
+; Builtins
 
-;;; Function definitions
+(this_expression) @variable.builtin
+((simple_identifier) @variable.builtin
+  (#eq? @variable.builtin "it"))
+((simple_identifier) @variable.builtin
+  (#eq? @variable.builtin "field"))
 
-(function_declaration
-	. (simple_identifier) @function)
-
-(getter
-	("get") @function.builtin)
-(setter
-	("set") @function.builtin)
-
-(primary_constructor) @constructor
-(secondary_constructor
-	("constructor") @constructor)
-
-(constructor_invocation
-	(user_type
-		(type_identifier) @constructor))
-
-(anonymous_initializer
-	("init") @constructor)
-
-(parameter
-	(simple_identifier) @parameter)
-
-(parameter_with_optional_type
-	(simple_identifier) @parameter)
-
-; lambda parameters
-(lambda_literal
-	(lambda_parameters
-		(variable_declaration
-			(simple_identifier) @parameter)))
-
-;;; Function calls
-
-; function()
+; Built-in functions
 (call_expression
-	. (simple_identifier) @function)
-
-; object.function() or object.property.function()
-(call_expression
-	(navigation_expression
-		(navigation_suffix
-			(simple_identifier) @function) . ))
-
-(call_expression
-	. (simple_identifier) @function.builtin
+  . (simple_identifier) @function.builtin
     (#any-of? @function.builtin
-		"arrayOf"
-		"arrayOfNulls"
-		"byteArrayOf"
-		"shortArrayOf"
-		"intArrayOf"
-		"longArrayOf"
-		"ubyteArrayOf"
-		"ushortArrayOf"
-		"uintArrayOf"
-		"ulongArrayOf"
-		"floatArrayOf"
-		"doubleArrayOf"
-		"booleanArrayOf"
-		"charArrayOf"
-		"emptyArray"
-		"mapOf"
-		"setOf"
-		"listOf"
-		"emptyMap"
-		"emptySet"
-		"emptyList"
-		"mutableMapOf"
-		"mutableSetOf"
-		"mutableListOf"
-		"print"
-		"println"
-		"error"
-		"TODO"
-		"run"
-		"runCatching"
-		"repeat"
-		"lazy"
-		"lazyOf"
-		"enumValues"
-		"enumValueOf"
-		"assert"
-		"check"
-		"checkNotNull"
-		"require"
-		"requireNotNull"
-		"with"
-		"suspend"
-		"synchronized"
-))
+      "arrayOf" "arrayOfNulls" "byteArrayOf" "shortArrayOf" "intArrayOf" 
+      "longArrayOf" "floatArrayOf" "doubleArrayOf" "booleanArrayOf" "charArrayOf"
+      "emptyArray" "mapOf" "setOf" "listOf" "emptyMap" "emptySet" "emptyList"
+      "mutableMapOf" "mutableSetOf" "mutableListOf"
+      "print" "println" "error" "TODO" "run" "runCatching" "repeat"
+      "lazy" "lazyOf" "enumValues" "enumValueOf" "assert" "check" 
+      "checkNotNull" "require" "requireNotNull" "with" "suspend" "synchronized"))
 
-;;; Literals
+; Literals
 
 [
-	(line_comment)
-	(multiline_comment)
-	(shebang_line)
-] @comment
-
-(real_literal) @float
-[
-	(integer_literal)
-	(long_literal)
-	(hex_literal)
-	(bin_literal)
-	(unsigned_literal)
+  (integer_literal)
+  (long_literal)
+  (hex_literal)
+  (bin_literal)
+  (unsigned_literal)
 ] @number
 
+(real_literal) @number
+
 [
-	(null_literal) ; should be highlighted the same as booleans
-	(boolean_literal)
-] @boolean
-
-(character_literal) @character
-
-(string_literal) @string
-
+  (character_literal)
+  (string_literal)
+] @string
 (character_escape_seq) @string.escape
 
-; There are 3 ways to define a regex
-;    - "[abc]?".toRegex()
-(call_expression
-	(navigation_expression
-		((string_literal) @string.regex)
-		(navigation_suffix
-			((simple_identifier) @_function
-			(#eq? @_function "toRegex")))))
-
-;    - Regex("[abc]?")
-(call_expression
-	((simple_identifier) @_function
-	(#eq? @_function "Regex"))
-	(call_suffix
-		(value_arguments
-			(value_argument
-				(string_literal) @string.regex))))
-
-;   - Regex.fromLiteral("[abc]?")
-(call_expression
-	(navigation_expression
-		((simple_identifier) @_class
-		(#eq? @_class "Regex"))
-		(navigation_suffix
-			((simple_identifier) @_function
-			(#eq? @_function "fromLiteral"))))
-	(call_suffix
-		(value_arguments
-			(value_argument
-				(string_literal) @string.regex))))
-
-;;; Keywords
-
-(type_alias "typealias" @keyword)
 [
-	(class_modifier)
-	(member_modifier)
-	(function_modifier)
-	(property_modifier)
-	(platform_modifier)
-	(variance_modifier)
-	(parameter_modifier)
-	(visibility_modifier)
-	(reification_modifier)
-	(inheritance_modifier)
-]@keyword
+  (boolean_literal)
+  (null_literal)
+] @constant.builtin
 
 [
-	"val"
-	"var"
-	"enum"
-	"class"
-	"object"
-	"interface"
-;	"typeof" ; NOTE: It is reserved for future use
+  (line_comment)
+  (multiline_comment)
+  (shebang_line)
+] @comment
+
+; Keywords - using modifier nodes as in original
+
+[
+  (class_modifier)
+  (member_modifier)
+  (function_modifier)
+  (property_modifier)
+  (platform_modifier)
+  (variance_modifier)
+  (parameter_modifier)
+  (visibility_modifier)
+  (reification_modifier)
+  (inheritance_modifier)
+] @keyword
+
+[
+  "val"
+  "var"
+  "enum"
+  "class"
+  "object"
+  "interface"
 ] @keyword
 
 ("fun") @keyword.function
-
-(jump_expression) @keyword.return
+("typealias") @keyword
 
 [
-	"if"
-	"else"
-	"when"
+  "if"
+  "else" 
+  "when"
 ] @conditional
 
 [
-	"for"
-	"do"
-	"while"
+  "for"
+  "do"
+  "while"
 ] @repeat
 
 [
-	"try"
-	"catch"
-	"throw"
-	"finally"
+  "try"
+  "catch"
+  "throw"
+  "finally"
 ] @exception
 
+(jump_expression) @keyword.return
 
-(annotation
-	"@" @attribute (use_site_target)? @attribute)
-(annotation
-	(user_type
-		(type_identifier) @attribute))
-(annotation
-	(constructor_invocation
-		(user_type
-			(type_identifier) @attribute)))
-
-(file_annotation
-	"@" @attribute "file" @attribute ":" @attribute)
-(file_annotation
-	(user_type
-		(type_identifier) @attribute))
-(file_annotation
-	(constructor_invocation
-		(user_type
-			(type_identifier) @attribute)))
-
-;;; Operators & Punctuation
-
+; Operators
 [
-	"!"
-	"!="
-	"!=="
-	"="
-	"=="
-	"==="
-	">"
-	">="
-	"<"
-	"<="
-	"||"
-	"&&"
-	"+"
-	"++"
-	"+="
-	"-"
-	"--"
-	"-="
-	"*"
-	"*="
-	"/"
-	"/="
-	"%"
-	"%="
-	"?."
-	"?:"
-	"!!"
-	"is"
-	"!is"
-	"in"
-	"!in"
-	"as"
-	"as?"
-	".."
-	"->"
+  "!"
+  "!="
+  "!=="
+  "="
+  "=="
+  "==="
+  ">"
+  ">="
+  "<"
+  "<="
+  "||"
+  "&&"
+  "+"
+  "++"
+  "+="
+  "-"
+  "--"
+  "-="
+  "*"
+  "*="
+  "/"
+  "/="
+  "%"
+  "%="
+  "?."
+  "?:"
+  "!!"
+  "is"
+  "!is"
+  "in"
+  "!in"
+  "as"
+  "as?"
+  ".."
+  "->"
 ] @operator
 
+; Punctuation
 [
-	"(" ")"
-	"[" "]"
-	"{" "}"
-] @punctuation.bracket
-
-[
-	"."
-	","
-	";"
-	":"
-	"::"
+  ";"
+  ","
+  "."
+  "::"
 ] @punctuation.delimiter
 
-; NOTE: `interpolated_identifier`s can be highlighted in any way
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
+
+; Variables
+
+(parameter
+  (simple_identifier) @variable.parameter)
+(parameter_with_optional_type
+  (simple_identifier) @variable.parameter)
+(lambda_literal
+  (lambda_parameters
+    (variable_declaration
+      (simple_identifier) @variable.parameter)))
+
+(variable_declaration
+  (simple_identifier) @variable)
+
+(property_declaration
+  (variable_declaration
+    (simple_identifier) @property))
+
+(class_parameter
+  (simple_identifier) @property)
+
+; General navigation suffix (for properties) - placed after more specific rules
+(_
+  (navigation_suffix
+    (simple_identifier) @property))
+
+; Import and package
+(package_header
+  . (identifier) @namespace)
+
+(import_header
+  "import" @include)
+
+; Generic parameters - handled through type_identifier nodes
+
+; String interpolation
 (string_literal
-	"$" @punctuation.special
-	(interpolated_identifier) @none)
+  "$" @punctuation.special
+  (interpolated_identifier) @none)
 (string_literal
-	"${" @punctuation.special
-	(interpolated_expression) @none
-	"}" @punctuation.special)
+  "${" @punctuation.special
+  (interpolated_expression) @none
+  "}" @punctuation.special)
+
+; Labels
+(label) @label
+
+; Method calls - placed at end for higher priority over property rules
+(call_expression
+  . (simple_identifier) @function.method)
+(call_expression
+  (navigation_expression
+    (navigation_suffix
+      (simple_identifier) @function.method) . ))
+(super_expression) @function.builtin
+
+; Annotations - placed at end for highest priority over type rules
+(annotation
+  "@" @attribute)
+(annotation
+  (user_type
+    (type_identifier) @attribute))
+(annotation
+  (constructor_invocation
+    (user_type
+      (type_identifier) @attribute)))

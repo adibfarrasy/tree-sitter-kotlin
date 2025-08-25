@@ -1,0 +1,128 @@
+================================================================================
+Simple Interface
+================================================================================
+
+interface Foo {
+    fun bar()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_declaration
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (simple_identifier)
+        (function_value_parameters)))))
+
+================================================================================
+Functional Interface
+================================================================================
+
+fun interface Foo {
+    fun bar()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_declaration
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (simple_identifier)
+        (function_value_parameters)))))
+
+================================================================================
+Annotated Interface (Feign Client)
+================================================================================
+
+@FeignClient(name = "test", url = "http://test.com")
+interface TestFeignClient {
+    fun getData(): String
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_declaration
+    (modifiers
+      (annotation
+        (constructor_invocation
+          (user_type
+            (type_identifier))
+          (value_arguments
+            (value_argument
+              (simple_identifier)
+              (string_literal
+                (string_content)))
+            (value_argument
+              (simple_identifier)
+              (string_literal
+                (string_content)))))))
+    (type_identifier)
+    (class_body
+      (function_declaration
+        (simple_identifier)
+        (function_value_parameters)
+        (user_type
+          (type_identifier))))))
+
+================================================================================
+Interface with Inheritance
+================================================================================
+
+interface Child : Parent {
+    fun childMethod()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_declaration
+    (type_identifier)
+    (delegation_specifier
+      (user_type
+        (type_identifier)))
+    (class_body
+      (function_declaration
+        (simple_identifier)
+        (function_value_parameters)))))
+
+================================================================================
+Generic Interface
+================================================================================
+
+interface Repository<T> {
+    fun save(item: T): T
+    fun findAll(): List<T>
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_declaration
+    (type_identifier)
+    (type_parameters
+      (type_parameter
+        (type_identifier)))
+    (class_body
+      (function_declaration
+        (simple_identifier)
+        (function_value_parameters
+          (parameter
+            (simple_identifier)
+            (user_type
+              (type_identifier))))
+        (user_type
+          (type_identifier)))
+      (function_declaration
+        (simple_identifier)
+        (function_value_parameters)
+        (user_type
+          (type_identifier)
+          (type_arguments
+            (type_projection
+              (user_type
+                (type_identifier)))))))))
