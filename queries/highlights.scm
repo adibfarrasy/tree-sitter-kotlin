@@ -107,7 +107,9 @@
   "enum"
   "class"
   "object"
+  "companion"
   "interface"
+  "return"
 ] @keyword
 
 ("fun") @keyword.function
@@ -132,7 +134,7 @@
   "finally"
 ] @exception
 
-(jump_expression) @keyword.return
+; (jump_expression) @keyword.return
 
 ; Operators
 [
@@ -217,11 +219,15 @@
     (simple_identifier) @property))
 
 ; Import and package
+"package" @keyword
+
 (package_header
-  . (identifier) @namespace)
+  (identifier) @namespace)
+
+"import" @keyword
 
 (import_header
-  "import" @include)
+  (identifier) @namespace)
 
 ; Generic parameters - handled through type_identifier nodes
 
