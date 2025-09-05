@@ -1,6 +1,5 @@
 # Kotlin Grammar for Tree-sitter
 
-[![Build](https://github.com/fwcd/tree-sitter-kotlin/actions/workflows/build.yml/badge.svg)](https://github.com/fwcd/tree-sitter-kotlin/actions/workflows/build.yml)
 [![NPM](https://img.shields.io/npm/v/tree-sitter-kotlin)](https://www.npmjs.com/package/tree-sitter-kotlin)
 [![crates.io](https://img.shields.io/crates/v/tree-sitter-kotlin)](https://crates.io/crates/tree-sitter-kotlin)
 
@@ -50,15 +49,6 @@ It is also helpful to run the parser on a real Kotlin project's source files.
 
 First make sure to have [Emscripten](https://emscripten.org/) installed. If you use Homebrew, you can `brew install emscripten`. Then run:
 
->`npm run build-wasm`
-
-### Playground
-
-After compiling the grammar to WebAssembly, you can invoke
-
->`npm run playground`
-
-to launch an interactive editing environment that displays the parsed syntax tree on-the-fly in the browser. You can also view a deployed version of this playground [on the web](https://fwcd.github.io/tree-sitter-kotlin).
 
 ![Screenshot](playground-screenshot.png)
 
