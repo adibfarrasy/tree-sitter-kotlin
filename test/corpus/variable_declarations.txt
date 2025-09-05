@@ -1,0 +1,223 @@
+================================================================================
+val declaration
+================================================================================
+val name = "John"
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (string_literal
+      (string_content))))
+
+================================================================================
+var declaration
+================================================================================
+var count = 0
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (integer_literal)))
+
+================================================================================
+val with type annotation
+================================================================================
+val name: String = "John"
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (string_literal
+      (string_content))))
+
+================================================================================
+var with type annotation
+================================================================================
+var count: Int = 0
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (integer_literal)))
+
+================================================================================
+nullable variable
+================================================================================
+var name: String? = null
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (nullable_type
+        (user_type
+          (type_identifier))))
+    (null_literal)))
+
+================================================================================
+late init variable
+================================================================================
+lateinit var name: String
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (modifiers
+      (member_modifier))
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (user_type
+        (type_identifier)))))
+
+================================================================================
+const val
+================================================================================
+const val PI = 3.14159
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (modifiers
+      (property_modifier))
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (real_literal)))
+
+================================================================================
+private variable
+================================================================================
+private val secret = "hidden"
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (modifiers
+      (visibility_modifier))
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (string_literal
+      (string_content))))
+
+================================================================================
+destructuring declaration
+================================================================================
+val (name, age) = person
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (multi_variable_declaration
+      (variable_declaration
+        (simple_identifier))
+      (variable_declaration
+        (simple_identifier)))
+    (simple_identifier)))
+
+================================================================================
+multiple variable declarations
+================================================================================
+val a = 1
+val b = 2
+val c = 3
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (integer_literal))
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (integer_literal))
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (integer_literal)))
+
+================================================================================
+generic variable
+================================================================================
+val list: List<String> = emptyList()
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (type_projection
+            (user_type
+              (type_identifier))))))
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments)))))
+
+================================================================================
+variable with custom getter
+================================================================================
+val doubled: Int
+    get() = value * 2
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (user_type
+        (type_identifier))))
+  (getter
+    (function_body
+      (multiplicative_expression
+        (simple_identifier)
+        (integer_literal)))))
+
+================================================================================
+variable with custom setter
+================================================================================
+var name: String = ""
+    set(value) {
+        field = value.trim()
+    }
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+      (string_literal))
+  (setter
+    (parameter_with_optional_type
+      (simple_identifier))
+    (function_body
+      (statements
+        (assignment
+          (directly_assignable_expression
+            (simple_identifier))
+          (call_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments))))))))

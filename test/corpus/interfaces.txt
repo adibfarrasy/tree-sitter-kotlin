@@ -35,11 +35,11 @@ fun interface Foo {
         (function_value_parameters)))))
 
 ================================================================================
-Annotated Interface (Feign Client)
+Annotated Interface
 ================================================================================
 
-@FeignClient(name = "test", url = "http://test.com")
-interface TestFeignClient {
+@MyAnnotation
+interface TestInterface {
     fun getData(): String
 }
 
@@ -49,18 +49,8 @@ interface TestFeignClient {
   (interface_declaration
     (modifiers
       (annotation
-        (constructor_invocation
-          (user_type
-            (type_identifier))
-          (value_arguments
-            (value_argument
-              (simple_identifier)
-              (string_literal
-                (string_content)))
-            (value_argument
-              (simple_identifier)
-              (string_literal
-                (string_content)))))))
+        (user_type
+          (type_identifier))))
     (type_identifier)
     (class_body
       (function_declaration

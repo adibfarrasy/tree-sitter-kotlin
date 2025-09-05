@@ -1,0 +1,140 @@
+================================================================================
+safe cast
+================================================================================
+obj as? String
+--------------------------------------------------------------------------------
+(source_file
+  (as_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier))))
+
+================================================================================
+unsafe cast
+================================================================================
+obj as String
+--------------------------------------------------------------------------------
+(source_file
+  (as_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier))))
+
+================================================================================
+is type check
+================================================================================
+obj is String
+--------------------------------------------------------------------------------
+(source_file
+  (check_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier))))
+
+================================================================================
+not is type check
+================================================================================
+obj !is String
+--------------------------------------------------------------------------------
+(source_file
+  (check_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier))))
+
+================================================================================
+smart cast in if
+================================================================================
+if (obj is String) {
+    println(obj.length)
+}
+--------------------------------------------------------------------------------
+(source_file
+  (if_expression
+    (check_expression
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (control_structure_body
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments
+              (value_argument
+                (navigation_expression
+                  (simple_identifier)
+                  (navigation_suffix
+                    (simple_identifier)))))))))))
+
+================================================================================
+cast with generics
+================================================================================
+list as List<String>
+--------------------------------------------------------------------------------
+(source_file
+  (as_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier)
+      (type_arguments
+        (type_projection
+          (user_type
+            (type_identifier)))))))
+
+================================================================================
+cast to nullable type
+================================================================================
+obj as String?
+--------------------------------------------------------------------------------
+(source_file
+  (as_expression
+    (simple_identifier)
+    (nullable_type
+      (user_type
+        (type_identifier)))))
+
+================================================================================
+parenthesized cast
+================================================================================
+(obj as String).length
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (parenthesized_expression
+      (as_expression
+        (simple_identifier)
+        (user_type
+          (type_identifier))))
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+cast in expression
+================================================================================
+val result = obj as Int + 5
+--------------------------------------------------------------------------------
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    (variable_declaration
+      (simple_identifier))
+    (additive_expression
+      (as_expression
+        (simple_identifier)
+        (user_type
+          (type_identifier)))
+      (integer_literal))))
+
+================================================================================
+nested type check
+================================================================================
+obj is List<*>
+--------------------------------------------------------------------------------
+(source_file
+  (check_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier)
+      (type_arguments
+        (type_projection)))))

@@ -1,0 +1,128 @@
+================================================================================
+string with variable interpolation
+================================================================================
+"Hello $name"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_identifier)))
+
+================================================================================
+string with expression interpolation
+================================================================================
+"Result: ${calculation()}"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_expression
+      (call_expression
+        (simple_identifier)
+        (call_suffix
+          (value_arguments))))))
+
+================================================================================
+string with property access interpolation
+================================================================================
+"User: ${user.name}"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier))))))
+
+================================================================================
+string with escaped dollar sign
+================================================================================
+"Price: \$50"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)))
+
+================================================================================
+multiple interpolations in string
+================================================================================
+"Hello $firstName $lastName"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_identifier)
+    (string_content)
+    (interpolated_identifier)))
+
+================================================================================
+mixed interpolation types
+================================================================================
+"Hello ${name}, you are ${age} years old"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_expression
+      (simple_identifier))
+    (string_content)
+    (interpolated_expression
+      (simple_identifier))
+    (string_content)))
+
+================================================================================
+multiline string with interpolation
+================================================================================
+"""
+Hello $name,
+Welcome to ${app.name}!
+"""
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_identifier)
+    (string_content)
+    (interpolated_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier))))
+    (string_content)))
+
+================================================================================
+complex expression interpolation
+================================================================================
+"Total: ${items.size * price}"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_expression
+      (multiplicative_expression
+        (navigation_expression
+          (simple_identifier)
+          (navigation_suffix
+            (simple_identifier)))
+        (simple_identifier)))))
+
+================================================================================
+nested string interpolation
+================================================================================
+"Outer ${if (condition) "inner $value" else "default"}"
+--------------------------------------------------------------------------------
+(source_file
+  (string_literal
+    (string_content)
+    (interpolated_expression
+      (if_expression
+        (simple_identifier)
+        (control_structure_body
+          (string_literal
+            (string_content)
+            (interpolated_identifier)))
+        (control_structure_body
+          (string_literal
+            (string_content)))))))

@@ -1,0 +1,333 @@
+================================================================================
+array literal with elements
+================================================================================
+arrayOf(1, 2, 3)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))))))
+
+================================================================================
+list literal with elements
+================================================================================
+listOf(1, 2, 3)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))))))
+
+================================================================================
+nested list literal
+================================================================================
+listOf(listOf(1, 2), listOf(3, 4))
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (integer_literal))
+                (value_argument
+                  (integer_literal))))))
+        (value_argument
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (integer_literal))
+                (value_argument
+                  (integer_literal))))))))))
+
+================================================================================
+empty map literal
+================================================================================
+mapOf<String, Int>()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (type_arguments
+        (type_projection
+          (user_type
+            (type_identifier)))
+        (type_projection
+          (user_type
+            (type_identifier))))
+      (value_arguments))))
+
+================================================================================
+map literal with entries
+================================================================================
+mapOf("key" to "value", "count" to 42)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (string_literal
+              (string_content))))
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (integer_literal)))))))
+
+================================================================================
+mutable list creation
+================================================================================
+mutableListOf(1, 2, 3)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))))))
+
+================================================================================
+array literal with trailing comma
+================================================================================
+arrayOf(1, 2, 3,)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))))))
+
+================================================================================
+set literal
+================================================================================
+setOf("a", "b", "c")
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (string_literal
+            (string_content)))
+        (value_argument
+          (string_literal
+            (string_content)))
+        (value_argument
+          (string_literal
+            (string_content)))))))
+
+================================================================================
+empty array
+================================================================================
+emptyArray<String>()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (type_arguments
+        (type_projection
+          (user_type
+            (type_identifier))))
+      (value_arguments))))
+
+================================================================================
+array of primitives
+================================================================================
+intArrayOf(1, 2, 3)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (integer_literal))))))
+
+================================================================================
+mutable map creation
+================================================================================
+mutableMapOf("key" to "value")
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (string_literal
+              (string_content))))))))
+
+================================================================================
+linked hash map
+================================================================================
+linkedMapOf("a" to 1, "b" to 2)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (integer_literal)))
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (integer_literal)))))))
+
+================================================================================
+sorted map
+================================================================================
+sortedMapOf("b" to 2, "a" to 1)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (integer_literal)))
+        (value_argument
+          (infix_expression
+            (string_literal
+              (string_content))
+            (simple_identifier)
+            (integer_literal)))))))
+
+================================================================================
+list with mixed types
+================================================================================
+listOf("text", 42, true)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (string_literal
+            (string_content)))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (boolean_literal))))))
+
+================================================================================
+array access
+================================================================================
+array[0]
+--------------------------------------------------------------------------------
+(source_file
+  (indexing_expression
+    (simple_identifier)
+    (indexing_suffix
+      (integer_literal))))
+
+================================================================================
+list indexing with variable
+================================================================================
+list[index]
+--------------------------------------------------------------------------------
+(source_file
+  (indexing_expression
+    (simple_identifier)
+    (indexing_suffix
+      (simple_identifier))))
+
+================================================================================
+nested collection access
+================================================================================
+matrix[i][j]
+--------------------------------------------------------------------------------
+(source_file
+  (indexing_expression
+    (indexing_expression
+      (simple_identifier)
+      (indexing_suffix
+        (simple_identifier)))
+    (indexing_suffix
+      (simple_identifier))))
+
+================================================================================
+collection size property
+================================================================================
+list.size
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (simple_identifier)
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+collection isEmpty check
+================================================================================
+list.isEmpty()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))

@@ -1,0 +1,140 @@
+================================================================================
+simple field access
+================================================================================
+obj.field
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (simple_identifier)
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+safe navigation field access
+================================================================================
+obj?.field
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (simple_identifier)
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+chained field access
+================================================================================
+obj.field1.field2
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+field access with method call
+================================================================================
+obj.field.method()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))
+
+================================================================================
+array access after field
+================================================================================
+obj.array[0]
+--------------------------------------------------------------------------------
+(source_file
+  (indexing_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (indexing_suffix
+      (integer_literal))))
+
+================================================================================
+nested safe navigation
+================================================================================
+obj?.field?.subfield
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+field access on function result
+================================================================================
+getObject().field
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (call_expression
+      (simple_identifier)
+      (call_suffix
+        (value_arguments)))
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+this field access
+================================================================================
+this.field
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (this_expression)
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+super field access
+================================================================================
+super.field
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (super_expression)
+    (navigation_suffix
+      (simple_identifier))))
+
+================================================================================
+qualified this field access
+================================================================================
+this@OuterClass.field
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (this_expression
+      (type_identifier))
+    (navigation_suffix
+      (simple_identifier))))
+
+
+================================================================================
+backticked field access
+================================================================================
+obj.`field-name`
+--------------------------------------------------------------------------------
+(source_file
+  (navigation_expression
+    (simple_identifier)
+    (navigation_suffix
+      (simple_identifier))))

@@ -1,0 +1,194 @@
+================================================================================
+simple method call
+================================================================================
+println("hello")
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (string_literal
+            (string_content)))))))
+
+================================================================================
+method call without arguments
+================================================================================
+doSomething()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments))))
+
+================================================================================
+method call on object
+================================================================================
+obj.method()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))
+
+================================================================================
+chained method calls
+================================================================================
+obj.method1().method2().method3()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (call_expression
+        (navigation_expression
+          (call_expression
+            (navigation_expression
+              (simple_identifier)
+              (navigation_suffix
+                (simple_identifier)))
+            (call_suffix
+              (value_arguments)))
+          (navigation_suffix
+            (simple_identifier)))
+        (call_suffix
+          (value_arguments)))
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))
+
+================================================================================
+method call with multiple arguments
+================================================================================
+calculate(a, b, c)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (simple_identifier))
+        (value_argument
+          (simple_identifier))
+        (value_argument
+          (simple_identifier))))))
+
+================================================================================
+method call with mixed argument types
+================================================================================
+process("text", 42, true, null)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (string_literal
+            (string_content)))
+        (value_argument
+          (integer_literal))
+        (value_argument
+          (boolean_literal))
+        (value_argument
+          (null_literal))))))
+
+================================================================================
+static method call
+================================================================================
+Math.max(a, b)
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (simple_identifier))
+        (value_argument
+          (simple_identifier))))))
+
+================================================================================
+method call with property access
+================================================================================
+obj.field.method()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (navigation_expression
+        (simple_identifier)
+        (navigation_suffix
+          (simple_identifier)))
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))
+
+================================================================================
+method call with safe navigation
+================================================================================
+obj?.method()
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (value_arguments))))
+
+================================================================================
+method call with lambda
+================================================================================
+list.forEach { println(it) }
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (annotated_lambda
+        (lambda_literal
+          (statements
+            (call_expression
+              (simple_identifier)
+              (call_suffix
+                (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))))))
+
+================================================================================
+method call with lambda parameter
+================================================================================
+list.find { i -> i > 5 }
+--------------------------------------------------------------------------------
+(source_file
+  (call_expression
+    (navigation_expression
+      (simple_identifier)
+      (navigation_suffix
+        (simple_identifier)))
+    (call_suffix
+      (annotated_lambda
+        (lambda_literal
+          (lambda_parameters
+            (variable_declaration
+              (simple_identifier)))
+          (statements
+            (comparison_expression
+              (simple_identifier)
+              (integer_literal))))))))
