@@ -2,7 +2,7 @@
 
 ; Function declarations
 (function_declaration
-  (simple_identifier) @function.method)
+  (identifier) @function.method)
 
 ; Constructors
 (constructor_invocation
@@ -32,22 +32,22 @@
 ; Constants
 
 (enum_entry
-  (simple_identifier) @constant)
+  (identifier) @constant)
 
-((simple_identifier) @constant
+((identifier) @constant
  (#match? @constant "^[A-Z][A-Z0-9_]*$"))
 
 ; Builtins
 
 (this_expression) @variable.builtin
-((simple_identifier) @variable.builtin
+((identifier) @variable.builtin
   (#eq? @variable.builtin "it"))
-((simple_identifier) @variable.builtin
+((identifier) @variable.builtin
   (#eq? @variable.builtin "field"))
 
 ; Built-in functions
 (call_expression
-  . (simple_identifier) @function.builtin
+  . (identifier) @function.builtin
     (#any-of? @function.builtin
       "arrayOf" "arrayOfNulls" "byteArrayOf" "shortArrayOf" "intArrayOf" 
       "longArrayOf" "floatArrayOf" "doubleArrayOf" "booleanArrayOf" "charArrayOf"
@@ -60,7 +60,7 @@
 ; Literals
 
 [
-  (integer_literal)
+  (decimal_integer_literal)
   (long_literal)
   (hex_literal)
   (bin_literal)
@@ -195,34 +195,34 @@
 ; Variables
 
 (parameter
-  (simple_identifier) @variable.parameter)
+  (identifier) @variable.parameter)
 (parameter_with_optional_type
-  (simple_identifier) @variable.parameter)
+  (identifier) @variable.parameter)
 (lambda_literal
   (lambda_parameters
     (variable_declaration
-      (simple_identifier) @variable.parameter)))
+      (identifier) @variable.parameter)))
 
 (variable_declaration
-  (simple_identifier) @variable)
+  (identifier) @variable)
 
 (property_declaration
   (variable_declaration
-    (simple_identifier) @property))
+    (identifier) @property))
 
 (class_parameter
-  (simple_identifier) @property)
+  (identifier) @property)
 
 ; General navigation suffix (for properties) - placed after more specific rules
 (_
   (navigation_suffix
-    (simple_identifier) @property))
+    (identifier) @property))
 
 ; Import and package
 "package" @keyword
 
 (package_header
-  (identifier) @namespace)
+  (qualified_identifier) @namespace)
 
 "import" @keyword
 
@@ -245,11 +245,11 @@
 
 ; Method calls - placed at end for higher priority over property rules
 (call_expression
-  . (simple_identifier) @function.method)
+  . (identifier) @function.method)
 (call_expression
   (navigation_expression
     (navigation_suffix
-      (simple_identifier) @function.method) . ))
+      (identifier) @function.method) . ))
 (super_expression) @function.builtin
 
 ; Annotations - placed at end for highest priority over type rules

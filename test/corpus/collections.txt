@@ -5,15 +5,15 @@ arrayOf(1, 2, 3)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 list literal with elements
@@ -22,15 +22,15 @@ listOf(1, 2, 3)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 nested list literal
@@ -39,27 +39,27 @@ listOf(listOf(1, 2), listOf(3, 4))
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (call_expression
-            (simple_identifier)
+            (identifier)
             (call_suffix
               (value_arguments
                 (value_argument
-                  (integer_literal))
+                  (decimal_integer_literal))
                 (value_argument
-                  (integer_literal))))))
+                  (decimal_integer_literal))))))
         (value_argument
           (call_expression
-            (simple_identifier)
+            (identifier)
             (call_suffix
               (value_arguments
                 (value_argument
-                  (integer_literal))
+                  (decimal_integer_literal))
                 (value_argument
-                  (integer_literal))))))))))
+                  (decimal_integer_literal))))))))))
 
 ================================================================================
 empty map literal
@@ -68,7 +68,7 @@ mapOf<String, Int>()
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (type_arguments
         (type_projection
@@ -86,22 +86,22 @@ mapOf("key" to "value", "count" to 42)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
+            (identifier)
             (string_literal
               (string_content))))
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
-            (integer_literal)))))))
+            (identifier)
+            (decimal_integer_literal)))))))
 
 ================================================================================
 mutable list creation
@@ -110,15 +110,15 @@ mutableListOf(1, 2, 3)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 array literal with trailing comma
@@ -127,15 +127,15 @@ arrayOf(1, 2, 3,)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 set literal
@@ -144,7 +144,7 @@ setOf("a", "b", "c")
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
@@ -164,7 +164,7 @@ emptyArray<String>()
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (type_arguments
         (type_projection
@@ -179,15 +179,15 @@ intArrayOf(1, 2, 3)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 mutable map creation
@@ -196,14 +196,14 @@ mutableMapOf("key" to "value")
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
+            (identifier)
             (string_literal
               (string_content))))))))
 
@@ -214,21 +214,21 @@ linkedMapOf("a" to 1, "b" to 2)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
-            (integer_literal)))
+            (identifier)
+            (decimal_integer_literal)))
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
-            (integer_literal)))))))
+            (identifier)
+            (decimal_integer_literal)))))))
 
 ================================================================================
 sorted map
@@ -237,21 +237,21 @@ sortedMapOf("b" to 2, "a" to 1)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
-            (integer_literal)))
+            (identifier)
+            (decimal_integer_literal)))
         (value_argument
           (infix_expression
             (string_literal
               (string_content))
-            (simple_identifier)
-            (integer_literal)))))))
+            (identifier)
+            (decimal_integer_literal)))))))
 
 ================================================================================
 list with mixed types
@@ -260,14 +260,14 @@ listOf("text", 42, true)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (string_literal
             (string_content)))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
           (boolean_literal))))))
 
@@ -278,9 +278,9 @@ array[0]
 --------------------------------------------------------------------------------
 (source_file
   (indexing_expression
-    (simple_identifier)
+    (identifier)
     (indexing_suffix
-      (integer_literal))))
+      (decimal_integer_literal))))
 
 ================================================================================
 list indexing with variable
@@ -289,9 +289,9 @@ list[index]
 --------------------------------------------------------------------------------
 (source_file
   (indexing_expression
-    (simple_identifier)
+    (identifier)
     (indexing_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 nested collection access
@@ -301,11 +301,11 @@ matrix[i][j]
 (source_file
   (indexing_expression
     (indexing_expression
-      (simple_identifier)
+      (identifier)
       (indexing_suffix
-        (simple_identifier)))
+        (identifier)))
     (indexing_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 collection size property
@@ -314,9 +314,9 @@ list.size
 --------------------------------------------------------------------------------
 (source_file
   (navigation_expression
-    (simple_identifier)
+    (identifier)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 collection isEmpty check
@@ -326,8 +326,8 @@ list.isEmpty()
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))

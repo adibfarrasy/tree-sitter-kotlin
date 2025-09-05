@@ -5,7 +5,7 @@ ArrayList()
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments))))
 
@@ -16,14 +16,14 @@ Person("John", 30)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (string_literal
             (string_content)))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 object creation with named arguments
@@ -32,16 +32,16 @@ Person(name = "John", age = 30)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (identifier)
           (string_literal
             (string_content)))
         (value_argument
-          (simple_identifier)
-          (integer_literal))))))
+          (identifier)
+          (decimal_integer_literal))))))
 
 ================================================================================
 generic object creation
@@ -50,7 +50,7 @@ ArrayList<String>()
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (type_arguments
         (type_projection
@@ -65,16 +65,16 @@ Outer(Inner(42))
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (call_expression
-            (simple_identifier)
+            (identifier)
             (call_suffix
               (value_arguments
                 (value_argument
-                  (integer_literal))))))))))
+                  (decimal_integer_literal))))))))))
 
 ================================================================================
 object creation with lambda
@@ -85,13 +85,13 @@ Thread {
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (statements
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments
                   (value_argument
@@ -105,15 +105,15 @@ Point(x = 10, y = 20)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
-          (integer_literal))
+          (identifier)
+          (decimal_integer_literal))
         (value_argument
-          (simple_identifier)
-          (integer_literal))))))
+          (identifier)
+          (decimal_integer_literal))))))
 
 ================================================================================
 object creation with type inference
@@ -124,9 +124,9 @@ val list = mutableListOf<Int>()
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (type_arguments
           (type_projection
@@ -141,9 +141,9 @@ Color.RED
 --------------------------------------------------------------------------------
 (source_file
   (navigation_expression
-    (simple_identifier)
+    (identifier)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 companion object access
@@ -154,11 +154,11 @@ MyClass.Companion.getInstance()
   (call_expression
     (navigation_expression
       (navigation_expression
-        (simple_identifier)
+        (identifier)
         (navigation_suffix
-          (simple_identifier)))
+          (identifier)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -180,12 +180,12 @@ object : Runnable {
       (function_declaration
         (modifiers
           (member_modifier))
-        (simple_identifier)
-        (function_value_parameters)
+        (identifier)
+        (parameters)
         (function_body
           (statements
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments
                   (value_argument
@@ -199,7 +199,7 @@ createInstance("param")
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument

@@ -18,7 +18,7 @@ string with expression interpolation
     (string_content)
     (interpolated_expression
       (call_expression
-        (simple_identifier)
+        (identifier)
         (call_suffix
           (value_arguments))))))
 
@@ -32,9 +32,9 @@ string with property access interpolation
     (string_content)
     (interpolated_expression
       (navigation_expression
-        (simple_identifier)
+        (identifier)
         (navigation_suffix
-          (simple_identifier))))))
+          (identifier))))))
 
 ================================================================================
 string with escaped dollar sign
@@ -66,10 +66,10 @@ mixed interpolation types
   (string_literal
     (string_content)
     (interpolated_expression
-      (simple_identifier))
+      (identifier))
     (string_content)
     (interpolated_expression
-      (simple_identifier))
+      (identifier))
     (string_content)))
 
 ================================================================================
@@ -87,9 +87,9 @@ Welcome to ${app.name}!
     (string_content)
     (interpolated_expression
       (navigation_expression
-        (simple_identifier)
+        (identifier)
         (navigation_suffix
-          (simple_identifier))))
+          (identifier))))
     (string_content)))
 
 ================================================================================
@@ -103,10 +103,10 @@ complex expression interpolation
     (interpolated_expression
       (multiplicative_expression
         (navigation_expression
-          (simple_identifier)
+          (identifier)
           (navigation_suffix
-            (simple_identifier)))
-        (simple_identifier)))))
+            (identifier)))
+        (identifier)))))
 
 ================================================================================
 nested string interpolation
@@ -118,7 +118,7 @@ nested string interpolation
     (string_content)
     (interpolated_expression
       (if_expression
-        (simple_identifier)
+        (identifier)
         (control_structure_body
           (string_literal
             (string_content)

@@ -9,11 +9,11 @@ something as A
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier)))
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier))))
 
@@ -30,11 +30,11 @@ something as Some.NestedType
   (line_comment)
   (navigation_expression
     (as_expression
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 Deeply nested types
@@ -51,15 +51,15 @@ somethingElse as A.Deeply.Nested.Type
     (navigation_expression
       (navigation_expression
         (as_expression
-          (simple_identifier)
+          (identifier)
           (user_type
             (type_identifier)))
         (navigation_suffix
-          (simple_identifier)))
+          (identifier)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 Generic wildcard types
@@ -71,7 +71,7 @@ something as Generic<*>
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier)
       (type_arguments
@@ -88,7 +88,7 @@ something as Generic<A, Type>
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier)
       (type_arguments
@@ -96,7 +96,7 @@ something as Generic<A, Type>
           (user_type
             (type_identifier))))))
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier)
       (type_arguments
@@ -118,13 +118,13 @@ consumer as (Int) -> Unit
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (function_type
       (function_type_parameters)
       (user_type
         (type_identifier))))
   (as_expression
-    (simple_identifier)
+    (identifier)
     (function_type
       (function_type_parameters
         (user_type
@@ -143,7 +143,7 @@ b as (Nested.Type, (Int)) -> Unit
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (function_type
       (function_type_parameters
         (user_type
@@ -157,7 +157,7 @@ b as (Nested.Type, (Int)) -> Unit
       (user_type
         (type_identifier))))
   (as_expression
-    (simple_identifier)
+    (identifier)
     (function_type
       (function_type_parameters
         (user_type
@@ -179,15 +179,15 @@ a as (first: A, second: B) -> Unit
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (function_type
       (function_type_parameters
         (parameter
-          (simple_identifier)
+          (identifier)
           (user_type
             (type_identifier)))
         (parameter
-          (simple_identifier)
+          (identifier)
           (user_type
             (type_identifier))))
       (user_type
@@ -203,7 +203,7 @@ a as T.() -> Unit
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (function_type
       (receiver_type
         (user_type
@@ -223,17 +223,17 @@ a as Foo(x = "hi", y = "bar")
 (source_file
   (call_expression
     (as_expression
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (identifier)
           (string_literal
             (string_content)))
         (value_argument
-          (simple_identifier)
+          (identifier)
           (string_literal
             (string_content)))))))
 
@@ -248,17 +248,17 @@ a as Foo(x = "hi", y = "bar",)
 (source_file
   (call_expression
     (as_expression
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)
+          (identifier)
           (string_literal
             (string_content)))
         (value_argument
-          (simple_identifier)
+          (identifier)
           (string_literal
             (string_content)))))))
 
@@ -321,7 +321,7 @@ a as T & F
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (not_nullable_type
       (user_type
         (type_identifier))
@@ -338,7 +338,7 @@ a as @Foo T & F
 
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (type_modifiers
       (annotation
         (user_type
@@ -361,7 +361,7 @@ val x: Foo.Bar.() -> Unit = {}
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (function_type
         (receiver_type
           (user_type
@@ -384,7 +384,7 @@ val x: Foo.Bar.(foo: Int) -> Unit = {}
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (function_type
         (receiver_type
           (user_type
@@ -392,7 +392,7 @@ val x: Foo.Bar.(foo: Int) -> Unit = {}
             (type_identifier)))
         (function_type_parameters
           (parameter
-            (simple_identifier)
+            (identifier)
             (user_type
               (type_identifier))))
         (user_type
@@ -411,7 +411,7 @@ val x: Foo.() -> Unit = {}
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (function_type
         (receiver_type
           (user_type
@@ -431,10 +431,10 @@ fun foo(fn: Foo.Bar.() -> Unit) {}
 
 (source_file
   (function_declaration
-    (simple_identifier)
-    (function_value_parameters
+    (identifier)
+    (parameters
       (parameter
-        (simple_identifier)
+        (identifier)
         (function_type
           (receiver_type
             (user_type

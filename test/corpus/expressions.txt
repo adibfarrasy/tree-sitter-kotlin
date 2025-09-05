@@ -8,8 +8,8 @@ Multiplication expression
 
 (source_file
   (multiplicative_expression
-    (integer_literal)
-    (integer_literal)))
+    (decimal_integer_literal)
+    (decimal_integer_literal)))
 
 ================================================================================
 Safe Navigation
@@ -27,37 +27,37 @@ a ? . bar()
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments)))
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments)))
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments)))
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments)))
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -72,20 +72,20 @@ sum(1, 2)
 
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (string_literal
             (string_content))))))
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 When expression
@@ -103,23 +103,23 @@ val y = when(x){
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
-    (integer_literal))
+      (identifier))
+    (decimal_integer_literal))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (when_expression
       (when_subject
-        (simple_identifier))
+        (identifier))
       (when_entry
         (when_condition
-          (integer_literal))
+          (decimal_integer_literal))
         (control_structure_body
           (boolean_literal)))
       (when_entry
         (when_condition
-          (integer_literal))
+          (decimal_integer_literal))
         (control_structure_body
           (boolean_literal))))))
 
@@ -163,7 +163,7 @@ val MyDate.s: String get() = "hello"
       (user_type
         (type_identifier)))
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
     (getter
@@ -183,13 +183,13 @@ val x = expect(1)
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments
           (value_argument
-            (integer_literal)))))))
+            (decimal_integer_literal)))))))
 
 ================================================================================
 Expect as a top-level expression
@@ -201,11 +201,11 @@ expect(1)
 
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 Expect as a platform modifier
@@ -219,8 +219,8 @@ expect fun randomUUID(): String
   (function_declaration
     (modifiers
       (platform_modifier))
-    (simple_identifier)
-    (function_value_parameters)
+    (identifier)
+    (parameters)
     (user_type
       (type_identifier))))
 
@@ -235,7 +235,7 @@ foo<Int>(1)
 
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (type_arguments
         (type_projection
@@ -243,11 +243,11 @@ foo<Int>(1)
             (type_identifier))))
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal)))))
+          (decimal_integer_literal)))))
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (type_arguments
         (type_projection
@@ -255,7 +255,7 @@ foo<Int>(1)
             (type_identifier))))
       (value_arguments
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 Less than for comparison
@@ -274,33 +274,33 @@ val a = a<2>(3)
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (comparison_expression
-      (simple_identifier)
-      (simple_identifier)))
+      (identifier)
+      (identifier)))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (comparison_expression
-      (simple_identifier)
-      (simple_identifier)))
+      (identifier)
+      (identifier)))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (comparison_expression
       (comparison_expression
-        (simple_identifier)
-        (simple_identifier))
-      (simple_identifier)))
+        (identifier)
+        (identifier))
+      (identifier)))
   (line_comment)
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (type_arguments
           (type_projection
@@ -308,17 +308,17 @@ val a = a<2>(3)
               (type_identifier))))
         (value_arguments
           (value_argument
-            (simple_identifier))))))
+            (identifier))))))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (comparison_expression
       (comparison_expression
-        (simple_identifier)
-        (integer_literal))
+        (identifier)
+        (decimal_integer_literal))
       (parenthesized_expression
-        (integer_literal)))))
+        (decimal_integer_literal)))))
 
 ================================================================================
 Lambda Expressions
@@ -331,20 +331,20 @@ foo.forEach { (index, value) -> 2 }
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (lambda_parameters
             (multi_variable_declaration
               (variable_declaration
-                (simple_identifier))
+                (identifier))
               (variable_declaration
-                (simple_identifier))))
+                (identifier))))
           (statements
-            (integer_literal)))))))
+            (decimal_integer_literal)))))))
 
 ================================================================================
 Function call with trailing lambda
@@ -356,15 +356,15 @@ with(s) { length }
 
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier)))
+          (identifier)))
       (annotated_lambda
         (lambda_literal
           (statements
-            (simple_identifier)))))))
+            (identifier)))))))
 
 ================================================================================
 Multiple Statements on a Single Line
@@ -379,64 +379,64 @@ when (dir) {
 
 (source_file
   (function_declaration
-    (simple_identifier)
-    (function_value_parameters)
+    (identifier)
+    (parameters)
     (function_body
       (statements
         (property_declaration
           (binding_pattern_kind)
           (variable_declaration
-            (simple_identifier))
+            (identifier))
           (navigation_expression
-            (simple_identifier)
+            (identifier)
             (navigation_suffix
-              (simple_identifier))))
+              (identifier))))
         (assignment
           (directly_assignable_expression
-            (simple_identifier)
+            (identifier)
             (navigation_suffix
-              (simple_identifier)))
+              (identifier)))
           (navigation_expression
-            (simple_identifier)
+            (identifier)
             (navigation_suffix
-              (simple_identifier))))
+              (identifier))))
         (assignment
           (directly_assignable_expression
-            (simple_identifier)
+            (identifier)
             (navigation_suffix
-              (simple_identifier)))
-          (simple_identifier)))))
+              (identifier)))
+          (identifier)))))
   (when_expression
     (when_subject
-      (simple_identifier))
+      (identifier))
     (when_entry
       (when_condition
-        (integer_literal))
+        (decimal_integer_literal))
       (control_structure_body
         (statements
           (property_declaration
             (binding_pattern_kind)
             (variable_declaration
-              (simple_identifier))
+              (identifier))
             (navigation_expression
-              (simple_identifier)
+              (identifier)
               (navigation_suffix
-                (simple_identifier))))
+                (identifier))))
           (assignment
             (directly_assignable_expression
-              (simple_identifier)
+              (identifier)
               (navigation_suffix
-                (simple_identifier)))
+                (identifier)))
             (navigation_expression
-              (simple_identifier)
+              (identifier)
               (navigation_suffix
-                (simple_identifier))))
+                (identifier))))
           (assignment
             (directly_assignable_expression
-              (simple_identifier)
+              (identifier)
               (navigation_suffix
-                (simple_identifier)))
-            (simple_identifier)))))))
+                (identifier)))
+            (identifier)))))))
 
 ================================================================================
 Comments in Strings
@@ -458,9 +458,9 @@ val comments = """
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments
           (value_argument
@@ -469,9 +469,9 @@ val comments = """
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments
           (value_argument
@@ -480,9 +480,9 @@ val comments = """
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments
           (value_argument
@@ -491,9 +491,9 @@ val comments = """
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments
           (value_argument
@@ -502,7 +502,7 @@ val comments = """
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (string_literal
       (string_content))))
 
@@ -537,8 +537,8 @@ class Square() : Rectangle(), Polygon {
       (function_declaration
         (modifiers
           (member_modifier))
-        (simple_identifier)
-        (function_value_parameters)
+        (identifier)
+        (parameters)
         (function_body
           (statements
             (call_expression
@@ -546,7 +546,7 @@ class Square() : Rectangle(), Polygon {
                 (this_expression
                   (type_identifier))
                 (navigation_suffix
-                  (simple_identifier)))
+                  (identifier)))
               (call_suffix
                 (value_arguments)))
             (call_expression
@@ -554,7 +554,7 @@ class Square() : Rectangle(), Polygon {
                 (super_expression
                   (type_identifier))
                 (navigation_suffix
-                  (simple_identifier)))
+                  (identifier)))
               (call_suffix
                 (value_arguments)))
             (call_expression
@@ -563,7 +563,7 @@ class Square() : Rectangle(), Polygon {
                   (user_type
                     (type_identifier)))
                 (navigation_suffix
-                  (simple_identifier)))
+                  (identifier)))
               (call_suffix
                 (value_arguments)))
             (call_expression
@@ -573,7 +573,7 @@ class Square() : Rectangle(), Polygon {
                     (type_identifier))
                   (type_identifier))
                 (navigation_suffix
-                  (simple_identifier)))
+                  (identifier)))
               (call_suffix
                 (value_arguments)))))))))
 
@@ -593,11 +593,11 @@ if (cond1) {
 
 (source_file
   (if_expression
-    condition: (simple_identifier)
+    condition: (identifier)
     consequence: (control_structure_body
       (statements
         (call_expression
-          (simple_identifier)
+          (identifier)
           (call_suffix
             (value_arguments
               (value_argument
@@ -605,11 +605,11 @@ if (cond1) {
                   (string_content))))))))
     alternative: (control_structure_body
       (if_expression
-        condition: (simple_identifier)
+        condition: (identifier)
         consequence: (control_structure_body
           (statements
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments
                   (value_argument
@@ -618,7 +618,7 @@ if (cond1) {
         alternative: (control_structure_body
           (statements
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments
                   (value_argument
@@ -637,14 +637,14 @@ if (true) a else if (true) b else c
   (if_expression
     (boolean_literal)
     (control_structure_body
-      (simple_identifier))
+      (identifier))
     (control_structure_body
       (if_expression
         (boolean_literal)
         (control_structure_body
-          (simple_identifier))
+          (identifier))
         (control_structure_body
-          (simple_identifier))))))
+          (identifier))))))
 
 ================================================================================
 Infix syntax for function application
@@ -656,9 +656,9 @@ a mul b
 
 (source_file
   (infix_expression
-    (simple_identifier)
-    (simple_identifier)
-    (simple_identifier)))
+    (identifier)
+    (identifier)
+    (identifier)))
 
 ================================================================================
 Infix syntax, edge case 1
@@ -671,13 +671,13 @@ a ixxx b
 
 (source_file
   (infix_expression
-    (simple_identifier)
-    (simple_identifier)
-    (simple_identifier))
+    (identifier)
+    (identifier)
+    (identifier))
   (infix_expression
-    (simple_identifier)
-    (simple_identifier)
-    (simple_identifier)))
+    (identifier)
+    (identifier)
+    (identifier)))
 
 ================================================================================
 Infix syntax, edge case 2
@@ -691,14 +691,14 @@ a imports b
 
 (source_file
   (infix_expression
-    (simple_identifier)
-    (simple_identifier)
-    (simple_identifier))
+    (identifier)
+    (identifier)
+    (identifier))
   (infix_expression
-    (simple_identifier)
-    (simple_identifier)
-    (simple_identifier))
+    (identifier)
+    (identifier)
+    (identifier))
   (infix_expression
-    (simple_identifier)
-    (simple_identifier)
-    (simple_identifier)))
+    (identifier)
+    (identifier)
+    (identifier)))

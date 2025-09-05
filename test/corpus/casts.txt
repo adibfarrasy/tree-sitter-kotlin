@@ -5,7 +5,7 @@ obj as? String
 --------------------------------------------------------------------------------
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier))))
 
@@ -16,7 +16,7 @@ obj as String
 --------------------------------------------------------------------------------
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier))))
 
@@ -27,7 +27,7 @@ obj is String
 --------------------------------------------------------------------------------
 (source_file
   (check_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier))))
 
@@ -38,7 +38,7 @@ obj !is String
 --------------------------------------------------------------------------------
 (source_file
   (check_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier))))
 
@@ -52,20 +52,20 @@ if (obj is String) {
 (source_file
   (if_expression
     (check_expression
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
     (control_structure_body
       (statements
         (call_expression
-          (simple_identifier)
+          (identifier)
           (call_suffix
             (value_arguments
               (value_argument
                 (navigation_expression
-                  (simple_identifier)
+                  (identifier)
                   (navigation_suffix
-                    (simple_identifier)))))))))))
+                    (identifier)))))))))))
 
 ================================================================================
 cast with generics
@@ -74,7 +74,7 @@ list as List<String>
 --------------------------------------------------------------------------------
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier)
       (type_arguments
@@ -89,7 +89,7 @@ obj as String?
 --------------------------------------------------------------------------------
 (source_file
   (as_expression
-    (simple_identifier)
+    (identifier)
     (nullable_type
       (user_type
         (type_identifier)))))
@@ -103,11 +103,11 @@ parenthesized cast
   (navigation_expression
     (parenthesized_expression
       (as_expression
-        (simple_identifier)
+        (identifier)
         (user_type
           (type_identifier))))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 cast in expression
@@ -118,13 +118,13 @@ val result = obj as Int + 5
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (additive_expression
       (as_expression
-        (simple_identifier)
+        (identifier)
         (user_type
           (type_identifier)))
-      (integer_literal))))
+      (decimal_integer_literal))))
 
 ================================================================================
 nested type check
@@ -133,7 +133,7 @@ obj is List<*>
 --------------------------------------------------------------------------------
 (source_file
   (check_expression
-    (simple_identifier)
+    (identifier)
     (user_type
       (type_identifier)
       (type_arguments

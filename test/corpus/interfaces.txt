@@ -11,10 +11,10 @@ interface Foo {
 (source_file
   (interface_declaration
     (type_identifier)
-    (class_body
+    (interface_body
       (function_declaration
-        (simple_identifier)
-        (function_value_parameters)))))
+        (identifier)
+        (parameters)))))
 
 ================================================================================
 Functional Interface
@@ -29,10 +29,10 @@ fun interface Foo {
 (source_file
   (interface_declaration
     (type_identifier)
-    (class_body
+    (interface_body
       (function_declaration
-        (simple_identifier)
-        (function_value_parameters)))))
+        (identifier)
+        (parameters)))))
 
 ================================================================================
 Annotated Interface
@@ -52,10 +52,10 @@ interface TestInterface {
         (user_type
           (type_identifier))))
     (type_identifier)
-    (class_body
+    (interface_body
       (function_declaration
-        (simple_identifier)
-        (function_value_parameters)
+        (identifier)
+        (parameters)
         (user_type
           (type_identifier))))))
 
@@ -75,10 +75,10 @@ interface Child : Parent {
     (delegation_specifier
       (user_type
         (type_identifier)))
-    (class_body
+    (interface_body
       (function_declaration
-        (simple_identifier)
-        (function_value_parameters)))))
+        (identifier)
+        (parameters)))))
 
 ================================================================================
 Generic Interface
@@ -97,19 +97,19 @@ interface Repository<T> {
     (type_parameters
       (type_parameter
         (type_identifier)))
-    (class_body
+    (interface_body
       (function_declaration
-        (simple_identifier)
-        (function_value_parameters
+        (identifier)
+        (parameters
           (parameter
-            (simple_identifier)
+            (identifier)
             (user_type
               (type_identifier))))
         (user_type
           (type_identifier)))
       (function_declaration
-        (simple_identifier)
-        (function_value_parameters)
+        (identifier)
+        (parameters)
         (user_type
           (type_identifier)
           (type_arguments

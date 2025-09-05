@@ -19,8 +19,8 @@ val x = 4
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
-    (integer_literal)))
+      (identifier))
+    (decimal_integer_literal)))
 
 ================================================================================
 Multiple file annotations
@@ -71,33 +71,33 @@ fun main() {
   (import_list
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier))
+        (identifier)
+        (identifier))
       (wildcard_import))
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))
+        (identifier)
+        (identifier)
+        (identifier)))
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier))))
+        (identifier)
+        (identifier)
+        (identifier))))
   (import_list
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))
+        (identifier)
+        (identifier)
+        (identifier)))
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier))))
+        (identifier)
+        (identifier)
+        (identifier))))
   (function_declaration
-    (simple_identifier)
-    (function_value_parameters)
+    (identifier)
+    (parameters)
     (function_body)))
 
 ================================================================================
@@ -112,11 +112,11 @@ import java.io.Path import java.io.Files
   (import_list
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))
+        (identifier)
+        (identifier)
+        (identifier)))
     (import_header
       (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))))
+        (identifier)
+        (identifier)
+        (identifier)))))

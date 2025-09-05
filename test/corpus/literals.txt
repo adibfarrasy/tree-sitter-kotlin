@@ -7,7 +7,7 @@ helloWorld
 --------------------------------------------------------------------------------
 
 (source_file
-  (simple_identifier))
+  (identifier))
 
 ================================================================================
 Unicode identifiers
@@ -18,7 +18,7 @@ Unicode identifiers
 --------------------------------------------------------------------------------
 
 (source_file
-  (simple_identifier))
+  (identifier))
 
 ================================================================================
 Boolean literals
@@ -100,10 +100,10 @@ Integer literals
 --------------------------------------------------------------------------------
 
 (source_file
-  (integer_literal)
-  (integer_literal)
-  (integer_literal)
-  (integer_literal))
+  (decimal_integer_literal)
+  (decimal_integer_literal)
+  (decimal_integer_literal)
+  (decimal_integer_literal))
 
 ================================================================================
 Real literals
@@ -136,7 +136,7 @@ assertEquals("\u214E\uA7B5\u2CEF", "\u2132\uA7B4\u2CEF".lowercase())
 
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
@@ -146,7 +146,7 @@ assertEquals("\u214E\uA7B5\u2CEF", "\u2132\uA7B4\u2CEF".lowercase())
             (navigation_expression
               (string_literal (string_content))
               (navigation_suffix
-                (simple_identifier)))
+                (identifier)))
             (call_suffix
               (value_arguments))))))))
 

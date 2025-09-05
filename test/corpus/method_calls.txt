@@ -5,7 +5,7 @@ println("hello")
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
@@ -19,7 +19,7 @@ doSomething()
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments))))
 
@@ -31,9 +31,9 @@ obj.method()
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -49,17 +49,17 @@ obj.method1().method2().method3()
         (navigation_expression
           (call_expression
             (navigation_expression
-              (simple_identifier)
+              (identifier)
               (navigation_suffix
-                (simple_identifier)))
+                (identifier)))
             (call_suffix
               (value_arguments)))
           (navigation_suffix
-            (simple_identifier)))
+            (identifier)))
         (call_suffix
           (value_arguments)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -70,15 +70,15 @@ calculate(a, b, c)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier))
+          (identifier))
         (value_argument
-          (simple_identifier))
+          (identifier))
         (value_argument
-          (simple_identifier))))))
+          (identifier))))))
 
 ================================================================================
 method call with mixed argument types
@@ -87,14 +87,14 @@ process("text", 42, true, null)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (string_literal
             (string_content)))
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
           (boolean_literal))
         (value_argument
@@ -108,15 +108,15 @@ Math.max(a, b)
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments
         (value_argument
-          (simple_identifier))
+          (identifier))
         (value_argument
-          (simple_identifier))))))
+          (identifier))))))
 
 ================================================================================
 method call with property access
@@ -127,11 +127,11 @@ obj.field.method()
   (call_expression
     (navigation_expression
       (navigation_expression
-        (simple_identifier)
+        (identifier)
         (navigation_suffix
-          (simple_identifier)))
+          (identifier)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -143,9 +143,9 @@ obj?.method()
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -157,19 +157,19 @@ list.forEach { println(it) }
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (statements
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments
                   (value_argument
-                    (simple_identifier)))))))))))
+                    (identifier)))))))))))
 
 ================================================================================
 method call with lambda parameter
@@ -179,16 +179,16 @@ list.find { i -> i > 5 }
 (source_file
   (call_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (lambda_parameters
             (variable_declaration
-              (simple_identifier)))
+              (identifier)))
           (statements
             (comparison_expression
-              (simple_identifier)
-              (integer_literal))))))))
+              (identifier)
+              (decimal_integer_literal))))))))

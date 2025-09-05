@@ -7,7 +7,7 @@ val name = "John"
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (string_literal
       (string_content))))
 
@@ -20,8 +20,8 @@ var count = 0
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
-    (integer_literal)))
+      (identifier))
+    (decimal_integer_literal)))
 
 ================================================================================
 val with type annotation
@@ -32,7 +32,7 @@ val name: String = "John"
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
     (string_literal
@@ -47,10 +47,10 @@ var count: Int = 0
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
-    (integer_literal)))
+    (decimal_integer_literal)))
 
 ================================================================================
 nullable variable
@@ -61,7 +61,7 @@ var name: String? = null
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (nullable_type
         (user_type
           (type_identifier))))
@@ -78,7 +78,7 @@ lateinit var name: String
       (member_modifier))
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))))
 
@@ -93,7 +93,7 @@ const val PI = 3.14159
       (property_modifier))
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (real_literal)))
 
 ================================================================================
@@ -107,7 +107,7 @@ private val secret = "hidden"
       (visibility_modifier))
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (string_literal
       (string_content))))
 
@@ -121,10 +121,10 @@ val (name, age) = person
     (binding_pattern_kind)
     (multi_variable_declaration
       (variable_declaration
-        (simple_identifier))
+        (identifier))
       (variable_declaration
-        (simple_identifier)))
-    (simple_identifier)))
+        (identifier)))
+    (identifier)))
 
 ================================================================================
 multiple variable declarations
@@ -137,18 +137,18 @@ val c = 3
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
-    (integer_literal))
+      (identifier))
+    (decimal_integer_literal))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
-    (integer_literal))
+      (identifier))
+    (decimal_integer_literal))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier))
-    (integer_literal)))
+      (identifier))
+    (decimal_integer_literal)))
 
 ================================================================================
 generic variable
@@ -159,7 +159,7 @@ val list: List<String> = emptyList()
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)
         (type_arguments
@@ -167,7 +167,7 @@ val list: List<String> = emptyList()
             (user_type
               (type_identifier))))))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments)))))
 
@@ -181,14 +181,14 @@ val doubled: Int
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier))))
   (getter
     (function_body
       (multiplicative_expression
-        (simple_identifier)
-        (integer_literal)))))
+        (identifier)
+        (decimal_integer_literal)))))
 
 ================================================================================
 variable with custom setter
@@ -202,22 +202,22 @@ var name: String = ""
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration
-      (simple_identifier)
+      (identifier)
       (user_type
         (type_identifier)))
       (string_literal))
   (setter
     (parameter_with_optional_type
-      (simple_identifier))
+      (identifier))
     (function_body
       (statements
         (assignment
           (directly_assignable_expression
-            (simple_identifier))
+            (identifier))
           (call_expression
             (navigation_expression
-              (simple_identifier)
+              (identifier)
               (navigation_suffix
-                (simple_identifier)))
+                (identifier)))
             (call_suffix
               (value_arguments))))))))

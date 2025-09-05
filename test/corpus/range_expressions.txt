@@ -5,8 +5,8 @@ a..b
 --------------------------------------------------------------------------------
 (source_file
   (range_expression
-    (simple_identifier)
-    (simple_identifier)))
+    (identifier)
+    (identifier)))
 
 ================================================================================
 range without spaces
@@ -15,8 +15,8 @@ range without spaces
 --------------------------------------------------------------------------------
 (source_file
   (range_expression
-    (integer_literal)
-    (integer_literal)))
+    (decimal_integer_literal)
+    (decimal_integer_literal)))
 
 ================================================================================
 range with spaces between numbers
@@ -25,8 +25,8 @@ range with spaces between numbers
 --------------------------------------------------------------------------------
 (source_file
   (range_expression
-    (integer_literal)
-    (integer_literal)))
+    (decimal_integer_literal)
+    (decimal_integer_literal)))
 
 ================================================================================
 range with parentheses around numbers
@@ -36,9 +36,9 @@ range with parentheses around numbers
 (source_file
   (range_expression
     (parenthesized_expression
-      (integer_literal))
+      (decimal_integer_literal))
     (parenthesized_expression
-      (integer_literal))))
+      (decimal_integer_literal))))
 
 ================================================================================
 range until
@@ -47,9 +47,9 @@ range until
 --------------------------------------------------------------------------------
 (source_file
   (infix_expression
-    (integer_literal)
-    (simple_identifier)
-    (integer_literal)))
+    (decimal_integer_literal)
+    (identifier)
+    (decimal_integer_literal)))
 
 ================================================================================
 range downTo
@@ -58,9 +58,9 @@ range downTo
 --------------------------------------------------------------------------------
 (source_file
   (infix_expression
-    (integer_literal)
-    (simple_identifier)
-    (integer_literal)))
+    (decimal_integer_literal)
+    (identifier)
+    (decimal_integer_literal)))
 
 ================================================================================
 range with step
@@ -70,10 +70,10 @@ range with step
 (source_file
   (infix_expression
     (range_expression
-      (integer_literal)
-      (integer_literal))
-    (simple_identifier)
-    (integer_literal)))
+      (decimal_integer_literal)
+      (decimal_integer_literal))
+    (identifier)
+    (decimal_integer_literal)))
 
 ================================================================================
 for loop with range no spaces
@@ -85,18 +85,18 @@ for (i in 0..10) {
 (source_file
   (for_statement
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (range_expression
-      (integer_literal)
-      (integer_literal))
+      (decimal_integer_literal)
+      (decimal_integer_literal))
     (control_structure_body
       (statements
         (call_expression
-          (simple_identifier)
+          (identifier)
           (call_suffix
             (value_arguments
               (value_argument
-                (simple_identifier)))))))))
+                (identifier)))))))))
 
 ================================================================================
 range in for loop with parentheses
@@ -108,19 +108,19 @@ for (i in (1 .. 10)) {
 (source_file
   (for_statement
     (variable_declaration
-      (simple_identifier))
+      (identifier))
     (parenthesized_expression
       (range_expression
-        (integer_literal)
-        (integer_literal)))
+        (decimal_integer_literal)
+        (decimal_integer_literal)))
     (control_structure_body
       (statements
         (call_expression
-          (simple_identifier)
+          (identifier)
           (call_suffix
             (value_arguments
               (value_argument
-                (simple_identifier)))))))))
+                (identifier)))))))))
 
 ================================================================================
 range with negative numbers
@@ -130,8 +130,8 @@ range with negative numbers
 (source_file
   (prefix_expression
     (range_expression
-      (integer_literal)
-      (integer_literal))))
+      (decimal_integer_literal)
+      (decimal_integer_literal))))
 
 ================================================================================
 range with mixed types
@@ -140,8 +140,8 @@ start .. end
 --------------------------------------------------------------------------------
 (source_file
   (range_expression
-    (simple_identifier)
-    (simple_identifier)))
+    (identifier)
+    (identifier)))
 
 ================================================================================
 nested ranges in expression
@@ -152,12 +152,12 @@ nested ranges in expression
   (additive_expression
     (parenthesized_expression
       (range_expression
-        (integer_literal)
-        (integer_literal)))
+        (decimal_integer_literal)
+        (decimal_integer_literal)))
     (parenthesized_expression
       (range_expression
-        (integer_literal)
-        (integer_literal)))))
+        (decimal_integer_literal)
+        (decimal_integer_literal)))))
 
 ================================================================================
 char range
@@ -191,10 +191,10 @@ reversed range
     (navigation_expression
       (parenthesized_expression
         (range_expression
-          (integer_literal)
-          (integer_literal)))
+          (decimal_integer_literal)
+          (decimal_integer_literal)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -205,10 +205,10 @@ range contains check
 --------------------------------------------------------------------------------
 (source_file
   (check_expression
-    (integer_literal)
+    (decimal_integer_literal)
     (range_expression
-      (integer_literal)
-      (integer_literal))))
+      (decimal_integer_literal)
+      (decimal_integer_literal))))
 
 
 ================================================================================
@@ -218,13 +218,13 @@ processRange(1..100)
 --------------------------------------------------------------------------------
 (source_file
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
           (range_expression
-            (integer_literal)
-            (integer_literal)))))))
+            (decimal_integer_literal)
+            (decimal_integer_literal)))))))
 
 ================================================================================
 range with property access
@@ -234,13 +234,13 @@ obj.start..obj.end
 (source_file
   (range_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))))
+        (identifier)))))
 
 ================================================================================
 range with function calls
@@ -250,11 +250,11 @@ getMin()..getMax()
 (source_file
   (range_expression
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments)))
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments)))))
 
@@ -268,17 +268,17 @@ range map operation
     (navigation_expression
       (parenthesized_expression
         (range_expression
-          (integer_literal)
-          (integer_literal)))
+          (decimal_integer_literal)
+          (decimal_integer_literal)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (statements
             (multiplicative_expression
-              (simple_identifier)
-              (integer_literal))))))))
+              (identifier)
+              (decimal_integer_literal))))))))
 
 ================================================================================
 range filter operation
@@ -290,19 +290,19 @@ range filter operation
     (navigation_expression
       (parenthesized_expression
         (range_expression
-          (integer_literal)
-          (integer_literal)))
+          (decimal_integer_literal)
+          (decimal_integer_literal)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (statements
             (equality_expression
               (multiplicative_expression
-                (simple_identifier)
-                (integer_literal))
-              (integer_literal))))))))
+                (identifier)
+                (decimal_integer_literal))
+              (decimal_integer_literal))))))))
 
 ================================================================================
 range forEach
@@ -314,20 +314,20 @@ range forEach
     (navigation_expression
       (parenthesized_expression
         (range_expression
-          (integer_literal)
-          (integer_literal)))
+          (decimal_integer_literal)
+          (decimal_integer_literal)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (annotated_lambda
         (lambda_literal
           (statements
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments
                   (value_argument
-                    (simple_identifier)))))))))))
+                    (identifier)))))))))))
 
 ================================================================================
 range to list conversion
@@ -339,10 +339,10 @@ range to list conversion
     (navigation_expression
       (parenthesized_expression
         (range_expression
-          (integer_literal)
-          (integer_literal)))
+          (decimal_integer_literal)
+          (decimal_integer_literal)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -355,9 +355,9 @@ complex range expression
   (range_expression
     (parenthesized_expression
       (additive_expression
-        (simple_identifier)
-        (integer_literal)))
+        (identifier)
+        (decimal_integer_literal)))
     (parenthesized_expression
       (additive_expression
-        (simple_identifier)
-        (integer_literal)))))
+        (identifier)
+        (decimal_integer_literal)))))

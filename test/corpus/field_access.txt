@@ -5,9 +5,9 @@ obj.field
 --------------------------------------------------------------------------------
 (source_file
   (navigation_expression
-    (simple_identifier)
+    (identifier)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 safe navigation field access
@@ -16,9 +16,9 @@ obj?.field
 --------------------------------------------------------------------------------
 (source_file
   (navigation_expression
-    (simple_identifier)
+    (identifier)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 chained field access
@@ -28,11 +28,11 @@ obj.field1.field2
 (source_file
   (navigation_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 field access with method call
@@ -43,11 +43,11 @@ obj.field.method()
   (call_expression
     (navigation_expression
       (navigation_expression
-        (simple_identifier)
+        (identifier)
         (navigation_suffix
-          (simple_identifier)))
+          (identifier)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -59,11 +59,11 @@ obj.array[0]
 (source_file
   (indexing_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (indexing_suffix
-      (integer_literal))))
+      (decimal_integer_literal))))
 
 ================================================================================
 nested safe navigation
@@ -73,11 +73,11 @@ obj?.field?.subfield
 (source_file
   (navigation_expression
     (navigation_expression
-      (simple_identifier)
+      (identifier)
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 field access on function result
@@ -87,11 +87,11 @@ getObject().field
 (source_file
   (navigation_expression
     (call_expression
-      (simple_identifier)
+      (identifier)
       (call_suffix
         (value_arguments)))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 this field access
@@ -102,7 +102,7 @@ this.field
   (navigation_expression
     (this_expression)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 super field access
@@ -113,7 +113,7 @@ super.field
   (navigation_expression
     (super_expression)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 ================================================================================
 qualified this field access
@@ -125,7 +125,7 @@ this@OuterClass.field
     (this_expression
       (type_identifier))
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))
 
 
 ================================================================================
@@ -135,6 +135,6 @@ obj.`field-name`
 --------------------------------------------------------------------------------
 (source_file
   (navigation_expression
-    (simple_identifier)
+    (identifier)
     (navigation_suffix
-      (simple_identifier))))
+      (identifier))))

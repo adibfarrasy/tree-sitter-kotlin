@@ -12,13 +12,13 @@ bar.foo()
     (navigation_expression
       (call_expression
         (navigation_expression
-          (simple_identifier)
+          (identifier)
           (navigation_suffix
-            (simple_identifier)))
+            (identifier)))
         (call_suffix
           (value_arguments)))
       (navigation_suffix
-        (simple_identifier)))
+        (identifier)))
     (call_suffix
       (value_arguments))))
 
@@ -32,10 +32,10 @@ fun foo()
 ---
 (source_file
    (function_declaration
-    (simple_identifier)
-    (function_value_parameters)
+    (identifier)
+    (parameters)
     (function_body 
-    (integer_literal))))
+    (decimal_integer_literal))))
 
 ================================================================================
 Binary operator after newline
@@ -50,16 +50,16 @@ fun foo()  {
 --------------------------------------------------------------------------------
 
 (source_file
-  (function_declaration (simple_identifier) (function_value_parameters)
+  (function_declaration (identifier) (parameters)
      (function_body
         (statements
            (property_declaration
               (binding_pattern_kind)
               (variable_declaration
-               (simple_identifier))
+               (identifier))
               (conjunction_expression
-               (simple_identifier)
-               (simple_identifier)))))))
+               (identifier)
+               (identifier)))))))
 
 ================================================================================
 Open brace after newline
@@ -72,8 +72,8 @@ fun foo():String
 
 (source_file
   (function_declaration
-    (simple_identifier)
-    (function_value_parameters)
+    (identifier)
+    (parameters)
     (user_type
       (type_identifier))
     (function_body
@@ -114,30 +114,30 @@ fun foo() {
 
 (source_file
   (function_declaration
-   (simple_identifier)
-  (function_value_parameters)
+   (identifier)
+  (parameters)
     (function_body
       (statements
         (property_declaration
           (binding_pattern_kind)
           (variable_declaration
-            (simple_identifier))
+            (identifier))
           (elvis_expression
             (elvis_expression
               (call_expression
                 (navigation_expression
-                  (simple_identifier)
+                  (identifier)
                   (navigation_suffix
-                    (simple_identifier)))
+                    (identifier)))
                 (call_suffix
                   (value_arguments
                     (value_argument
                       (boolean_literal)))))
               (call_expression
                 (navigation_expression
-                  (simple_identifier)
+                  (identifier)
                   (navigation_suffix
-                    (simple_identifier)))
+                    (identifier)))
                 (call_suffix
                   (value_arguments))))
             (jump_expression)))))))
@@ -159,17 +159,17 @@ class Foo {
       (property_declaration
         (binding_pattern_kind)
         (variable_declaration
-          (simple_identifier)
+          (identifier)
           (user_type
             (type_identifier))))
       (getter
         (function_body
           (multiplicative_expression
             (call_expression
-              (simple_identifier)
+              (identifier)
               (call_suffix
                 (value_arguments)))
-            (integer_literal)))))))
+            (decimal_integer_literal)))))))
 
 ================================================================================
 Newline in function call
@@ -187,13 +187,13 @@ foo(1,
   (line_comment)
   (line_comment)
   (call_expression
-    (simple_identifier)
+    (identifier)
     (call_suffix
       (value_arguments
         (value_argument
-          (integer_literal))
+          (decimal_integer_literal))
         (value_argument
-          (integer_literal))))))
+          (decimal_integer_literal))))))
 
 ================================================================================
 Else after newline
@@ -207,13 +207,13 @@ else boo()
 (source_file
   (if_expression
     condition: (prefix_expression
-      (simple_identifier))
+      (identifier))
     consequence: (control_structure_body
-      (integer_literal))
+      (decimal_integer_literal))
     alternative:
       (control_structure_body
         (call_expression
-          (simple_identifier)
+          (identifier)
           (call_suffix
             (value_arguments))))))
 
@@ -228,12 +228,12 @@ if (!foo) 3 else boo()
 (source_file
   (if_expression
     condition: (prefix_expression
-      (simple_identifier))
+      (identifier))
     consequence: (control_structure_body
-      (integer_literal))
+      (decimal_integer_literal))
     alternative:
       (control_structure_body
         (call_expression
-          (simple_identifier)
+          (identifier)
           (call_suffix
             (value_arguments))))))
