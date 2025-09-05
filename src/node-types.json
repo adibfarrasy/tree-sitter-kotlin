@@ -8088,6 +8088,11 @@
     }
   },
   {
+    "type": "string_content",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "string_literal",
     "named": true,
     "fields": {},
@@ -9379,6 +9384,14 @@
     "named": false
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\"\"\"",
+    "named": false
+  },
+  {
     "type": "#!",
     "named": false
   },
@@ -9823,10 +9836,6 @@
   {
     "type": "setparam",
     "named": false
-  },
-  {
-    "type": "string_content",
-    "named": true
   },
   {
     "type": "super",

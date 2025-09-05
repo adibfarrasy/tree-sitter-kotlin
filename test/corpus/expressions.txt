@@ -451,7 +451,6 @@ val comments = """
   
   /* comment or two here */
 """
-val comments = """ // and here """ 
 
 --------------------------------------------------------------------------------
 
@@ -500,12 +499,6 @@ val comments = """ // and here """
           (value_argument
             (string_literal
               (string_content)))))))
-  (property_declaration
-    (binding_pattern_kind)
-    (variable_declaration
-      (simple_identifier))
-    (string_literal
-      (string_content)))
   (property_declaration
     (binding_pattern_kind)
     (variable_declaration

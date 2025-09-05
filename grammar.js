@@ -120,9 +120,6 @@ module.exports = grammar({
     $._import_list_delimiter,
     $.safe_nav,
     $.multiline_comment,
-    $._string_start,
-    $._string_end,
-    $.string_content,
   ],
 
   extras: $ => [
@@ -785,18 +782,54 @@ module.exports = grammar({
       $.unsigned_literal
     ),
 
-    string_literal: $ => seq(
-      $._string_start,
-      repeat(choice($.string_content, $._interpolation)),
-      $._string_end,
+    string_literal: $ => choice(
+      $._dq_string_literal,
+      $._triple_dq_string_literal,
     ),
 
-    line_string_expression: $ => seq("${", $._expression, "}"),
 
-    _interpolation: $ => choice(
+    _dq_string_literal: $ => seq(
+      '"',
+      repeat(
+        choice(
+          alias($._string_fragment, $.string_content),
+          seq("${", alias($._expression, $.interpolated_expression), "}"),
+          seq("$", alias($.simple_identifier, $.interpolated_identifier)),
+        ),
+      ),
+      '"',
+    ),
+
+
+    _triple_dq_string_literal: $ => seq(
+      '"""',
+      repeat(
+        choice(
+          alias($._multiline_string_fragment, $.string_content),
+          seq("${", alias($._expression, $.interpolated_expression), "}"),
+          seq("$", alias($.simple_identifier, $.interpolated_identifier)),
+        ),
+      ),
+      '"""',
+    ),
+
+    _multiline_string_fragment: () => choice(/([^"\\$]|\\[bfnrt'"\\$]|\\u[0-9a-fA-F]{4})+/, /"([^"\\$]|\\")*/),
+
+    _string_fragment: () => token.immediate(prec(1, /([^"\\$]|\\[bfnrt'"\\$]|\\u[0-9a-fA-F]{4})+/)),
+
+    string_interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
       seq("$", alias($.simple_identifier, $.interpolated_identifier))
     ),
+
+    _escape_sequence: $ => choice(
+      $._basic_escape_sequence,
+      $._unicode_escape_sequence,
+    ),
+
+    _basic_escape_sequence: () => token(seq("\\", /[bfnrt'"\\$]/)),
+    _unicode_escape_sequence: () => token(seq("\\", /u[0-9a-fA-F]{4}/)),
+
 
     lambda_literal: $ => prec(PREC.LAMBDA_LITERAL, seq(
       "{",

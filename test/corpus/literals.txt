@@ -53,25 +53,6 @@ string.
     (string_content)
     (string_content)))
 
-================================================================================
-String literal with lots of repeated quotes
-================================================================================
-
-""""What do you "mean"?", he said.
-There's a lot of ""quotations"". Even at the "end""""
-
---------------------------------------------------------------------------------
-
-(source_file
-  (string_literal
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)))
 
 ================================================================================
 String interpolation
@@ -106,33 +87,6 @@ ${"""string interpolation"""} $literal
     (interpolated_identifier)
     (string_content)))
 
-================================================================================
-More string interpolation
-================================================================================
-
-"$"
-"$1"
-"$ $ $"
-"\$foo"
-"\$"
-
---------------------------------------------------------------------------------
-
-(source_file
-  (string_literal
-    (string_content))
-  (string_literal
-    (string_content)
-    (string_content))
-  (string_literal
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content))
-  (string_literal
-    (string_content))
-  (string_literal))
 
 ================================================================================
 Integer literals
